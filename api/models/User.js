@@ -87,9 +87,8 @@ module.exports = {
 	    	timeToLive: 3,
 	    	data: {
 	        	title: inputs.to + '님이 고이접어를 남겼습니다.',
-        		message: 'saltfactory push demo',
-        		lot: inputs.lot,
-        		lat: inputs.lat
+        		message: inputs.lot + '/' + inputs.lat + '/' + inputs.message,
+        		from: inputs.fromg
     		}
 		});
 
