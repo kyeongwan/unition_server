@@ -22,15 +22,8 @@ module.exports = function find(inputs) {
       return res.redirect(inputs.invalidRedirect);
     }
 
-    // "Remember" the user in the session
-    // Subsequent requests from this user agent will have `req.session.me` set.
-    req.session.me = user.id;
-
-    // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
-    // send a 200 response letting the user agent know the login was successful.
-    // (also do this if no `successRedirect` was provided)
     if (req.wantsJSON || !inputs.successRedirect) {
-      return res.ok('True');
+      return res.ok(user.userName);
     }
 
     // Otherwise if this is an HTML-wanting browser, redirect to /.

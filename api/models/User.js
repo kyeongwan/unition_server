@@ -32,6 +32,8 @@ module.exports = {
       phoneNumber: inputs.phoneNumber
     }).then(function(user){
     	user.gcmReg = inputs.gcmReg;
+    	user.nToken = inputs.nToken;
+    	user.userName = inputs.userName;
     	user.save();
     });
   },
@@ -40,9 +42,20 @@ module.exports = {
     // Create a user
     User.findOne({
       phoneNumber: inputs.phoneNumber,
-      gcmReg: inputs.gcmReg
     })
     .exec(cb);
+  },
+
+
+  signup: function (inputs, cb) {
+    // Create a user
+    User.create({
+      userName: inputs.userName,
+      phoneNumber: inputs.phoneNumber,
+      // TODO: But encrypt the password first
+      gcmReg: inputs.gcmReg,
+      nToken: inputs.nToken
+    }).exec(cb);
   },
 
   find: function(inputs, cb){
@@ -51,11 +64,20 @@ module.exports = {
   	}).exec(cb);
   },
 
+  findName: function(inputs, cb){
+  	User.findOne({
+  		phoneNumber: inputs.phoneNumber
+  	}).then(function(user){
+  		return user.userName;
+  	})
+  },
+
   sendMessage: function(inputs, cd){
   	User.findOne({
   		phoneNumber: inputs.phoneNumber
   	}).then(function(user){
   		var gcmReg = user.gcmReg;
+  		console.log(gcmReg);
   		var gcm = require('node-gcm');
 		var message = new gcm.Message();
 
@@ -73,7 +95,7 @@ module.exports = {
 		var sender = new gcm.Sender(server_access_key);
 		var registrationIds = [];
 
-		var registration_id = '안드로이드 registration_id 값';
+		var registration_id = gcmReg;
 		// At least one required
 		registrationIds.push(registration_id);
 
