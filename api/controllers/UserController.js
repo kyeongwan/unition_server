@@ -7,5 +7,18 @@
 
 module.exports = {
 	
+
+	login: function(req, res){
+		return res.login({
+    		phoneNumber: req.param('phoneNumber'),
+    		gcmReg: req.param('gcmReg'),
+    		successRedirect: '/',
+    		invalidRedirect: '/login'
+		});
+	},
+
+	find: function(req, res){
+		
+	}
 };
 

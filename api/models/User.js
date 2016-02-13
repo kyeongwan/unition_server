@@ -8,7 +8,7 @@
 module.exports = {
 
   attributes: {
-	id:{
+	user_id:{
 		type: 'string',
 		required: true
 	},
@@ -24,7 +24,26 @@ module.exports = {
 		type: 'string',
 		required: true
 	}
+  },
+
+  change: function (inputs, cb) {
+    // Create a user
+    User.findOne({
+      phoneNumber: inputs.phoneNumber
+    }).then(function(user){
+    	user.gcmReg = inputs.gcmReg;
+    	user.save();
+    });
+  },
+
+  attemptLogin: function (inputs, cb) {
+    // Create a user
+    User.findOne({
+      phoneNumber: inputs.phoneNumber,
+      gcmReg: inputs.gcmReg
+    })
+    .exec(cb);
   }
-  
+
 };
 
