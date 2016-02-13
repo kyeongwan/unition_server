@@ -8,7 +8,7 @@
 module.exports = {
 
   attributes: {
-	user_id:{
+	userName:{
 		type: 'string',
 		required: true
 	},
