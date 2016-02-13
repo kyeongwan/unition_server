@@ -86,12 +86,14 @@ module.exports = {
 	    	delayWhileIdle: true,
 	    	timeToLive: 3,
 	    	data: {
-	        	key1: '안녕하세요.',
-        		key2: 'saltfactory push demo'
+	        	title: inputs.to + '님이 고이접어를 남겼습니다.',
+        		message: 'saltfactory push demo',
+        		lot: inputs.lot,
+        		lat: inputs.lat
     		}
 		});
 
-		var server_access_key = '푸시 프로바이더 서버 access key 값';
+		var server_access_key = 'AIzaSyCB0oQZg9lBBf5IhLhUphsV8RnXLwe1iac';
 		var sender = new gcm.Sender(server_access_key);
 		var registrationIds = [];
 
