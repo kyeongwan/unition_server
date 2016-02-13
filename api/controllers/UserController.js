@@ -18,7 +18,19 @@ module.exports = {
 	},
 
 	find: function(req, res){
-		
+		return res.find({
+			phoneNumber: req.param('phoneNumber'),
+			successRedirect: '/',
+			invalidRedirect: '/find'
+		});
+	},
+
+	sendMessage: function(req, res){
+		return res.sendMessage({
+			phoneNumber: req.param('phoneNumber'),
+			successRedirect: '/',
+			invalidRedirect: '/sendMessage'
+		});
 	}
 };
 

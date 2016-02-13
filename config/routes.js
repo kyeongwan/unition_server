@@ -35,7 +35,9 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
-  'post /login': 'UserController.login'
+  'post /login': 'UserController.login',
+  'post /find' : 'UserController.find',
+  'post /sendMessage' : 'UserController.sendMessage'
 
   /***************************************************************************
   *                                                                          *
